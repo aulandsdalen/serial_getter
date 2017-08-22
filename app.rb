@@ -10,10 +10,6 @@ get '/' do
 	haml :index, :locals => {:computers => computers, :nu => nuserials, :serials => serials}
 end
 
-get '/computers/:serial' do
-	# display info
-end
-
 post '/computers/add' do
 	# curl -H "Content-Type: text/plain" -d "$serial" http://localhost:9292/computers/add
 	t = Time.now
