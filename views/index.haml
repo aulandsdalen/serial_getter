@@ -8,6 +8,8 @@
 			%p= "Empty database"
 		- else
 			%p= "#{locals[:serials].length} records total"
+			%p
+				%a{:href=>"/download"}= 'download as csv' 
 			- if locals[:nu].empty?
 				%p= 'all records are unique'
 			- else

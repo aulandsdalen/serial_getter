@@ -5,4 +5,5 @@ source 'https://rubygems.org' do
 	gem 'puma'
 	gem 'sequel'
 	gem 'sqlite3'
+	gem 'csv'
 end

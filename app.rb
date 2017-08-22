@@ -1,3 +1,5 @@
+require 'csv'
+
 DB = Sequel.connect('sqlite://computers.db')
 
 get '/' do
@@ -18,4 +20,15 @@ post '/computers/add' do
 	DB[:computers].insert(:serial => serial,
 		:added_at => t)
 	logger.info "added to database"
+end
+
+get '/download' do
+	computers = DB[:computers].order(Sequel.asc(:added_at)).all
+	CSV.open("computers.csv", "w") { |csv| 
+		csv << ["id", "serial number", "added at"]
+		computers.each { |c|
+			csv << c.values
+		}
+	}
+	send_file "computers.csv", :filename => "computers.csv", :type => "application/csv"
 end
