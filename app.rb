@@ -1,5 +1,8 @@
+DB = Sequel.connect('sqlite://computers.db')
+
 get '/' do
-	haml :index
+	computers = DB[:computers].order(Sequel.desc(:added_at)).all
+	haml :index, :locals => {:computers => computers}
 end
 
 get '/computers/:serial' do
@@ -7,5 +10,10 @@ get '/computers/:serial' do
 end
 
 post '/computers/add' do
-	# add computer s/n to db
+	t = Time.now
+	serial = request.body.read
+	logger.info "received serial: #{serial} at #{t}"
+	DB[:computers].insert(:serial => serial,
+		:added_at => t)
+	logger.info "added to database"
 end
