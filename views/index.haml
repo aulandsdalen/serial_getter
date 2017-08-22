@@ -5,7 +5,7 @@
 		%link{:rel => 'stylesheet', :href => '/sg.css'}
 	%body
 		- if locals[:computers].empty?
-			%p= Empty database
+			%p= "Empty database"
 		- else
 			%p= "#{locals[:serials].length} records total"
 			- if locals[:nu].empty?
