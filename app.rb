@@ -1,8 +1,13 @@
 DB = Sequel.connect('sqlite://computers.db')
 
 get '/' do
-	computers = DB[:computers].order(Sequel.desc(:added_at)).all
-	haml :index, :locals => {:computers => computers}
+	computers = DB[:computers].order(Sequel.asc(:added_at)).all
+	serials = []
+	computers.each do |computer|
+		serials << computer[:serial]
+	end
+	nuserials = serials.select {|e| serials.count(e) > 1}.uniq
+	haml :index, :locals => {:computers => computers, :nu => nuserials, :serials => serials}
 end
 
 get '/computers/:serial' do
