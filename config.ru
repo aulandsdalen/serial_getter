@@ -1,3 +1,4 @@
+#\ --host 0.0.0.0 -E deployment
 require 'rubygems'
 require 'sinatra'
 require 'json'
