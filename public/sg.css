@@ -1,0 +1,8 @@
+.serials_tb {
+	border-spacing: 10pt;
+	margin-top: 2em;
+}
+.warn {
+	font-weight: bold;
+	color: red;
+}

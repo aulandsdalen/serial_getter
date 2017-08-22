@@ -1,0 +1,23 @@
+!!!
+%html
+	%head
+		%title= 'serial_getter by Shortcut'
+		%link{:rel => 'stylesheet', :href => '/sg.css'}
+	%body
+		%p= "#{locals[:serials].length} records total"
+		- if locals[:nu].empty?
+			%p= 'all records are unique'
+		- else
+			%p.warn= "non-unique records found:"
+			- locals[:nu].each do |nu|
+				%p.warn= nu
+		%table.serials_tb
+			%tr
+				%td= 'id'
+				%td= 'serial'
+				%td= 'added at'
+			-locals[:computers].each do |computer|
+				%tr
+					%td= computer[:id]
+					%td= computer[:serial]
+					%td= computer[:added_at]
