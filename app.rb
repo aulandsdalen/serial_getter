@@ -10,6 +10,7 @@ get '/computers/:serial' do
 end
 
 post '/computers/add' do
+	# curl -H "Content-Type: text/plain" -d "$serial" http://localhost:9292/computers/add
 	t = Time.now
 	serial = request.body.read
 	logger.info "received serial: #{serial} at #{t}"
